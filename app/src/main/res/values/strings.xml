@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TestProject</string>
+    <string name="symbol_search">Search</string>
+    <string name="content_test">Test</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree</string>
+    <string name="ok">Ok</string>
+</resources>

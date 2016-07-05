@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CustomDialog</string>
+    <string name="accessibility_overflow">accessibility_overflow</string>
+    <string name="content_body">Content Body</string>
+    <string name="content_title">Content Title</string>
+    <string name="content_decline">Decline</string>
+    <string name="content_accept">Accept</string>
+</resources>
