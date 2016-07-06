@@ -1,6 +1,7 @@
 package com.param.testproject;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,15 +14,16 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.arpaul.customdialog.StatingDialog.CustomDialog;
-import com.arpaul.customdialog.StatingDialog.CustomDialogType;
-import com.arpaul.customdialog.StatingDialog.DialogListener;
+import com.arpaul.customdialog.statingDialog.CustomDialog;
+import com.arpaul.customdialog.statingDialog.CustomDialogType;
+import com.arpaul.customdialog.statingDialog.DialogListener;
 
 public class MainActivity extends AppCompatActivity implements DialogListener {
 
     private Button btnDialog,btnProgressBar, btnCustomDialogAccept, btnCustomDialogDecline, btnCustomDialogAlert;
     private Context mContext;
     public MaterialDialog materialDialog,materialPB;
+    private CustomDialog cDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,8 +60,9 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
         btnCustomDialogAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new CustomDialog(MainActivity.this, MainActivity.this, "Success","Message success",
+                cDialog = new CustomDialog(MainActivity.this, MainActivity.this, "Success","Message success",
                         null, null, "Success", CustomDialogType.DIALOG_SUCCESS);
+                cDialog.show();
             }
         });
 
@@ -67,8 +70,11 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
         btnCustomDialogDecline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new CustomDialog(MainActivity.this, MainActivity.this,"Failure","Message failure",
+                cDialog = new CustomDialog(MainActivity.this, MainActivity.this,"Failure","Message failure",
                         getString(R.string.ok), null, "Failure", CustomDialogType.DIALOG_FAILURE);
+                Typeface tfBold = Typeface.createFromAsset(getAssets(),"fonts/Muli-Bold.ttf");
+//                cDialog.setTypefaceFor(CustomDialogTypeFace.DIALOG_BODY, tfBold, Typeface.BOLD);
+                cDialog.show();
             }
         });
 
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
             @Override
             public void onClick(View v) {
                 new CustomDialog(MainActivity.this, MainActivity.this,"Alert","Message alert",
-                        getString(R.string.ok), getString(R.string.disagree), "Alert", CustomDialogType.DIALOG_ALERT);
+                        getString(R.string.ok), null, "Alert", CustomDialogType.DIALOG_ALERT).show();
             }
         });
     }
@@ -128,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
                     .title(strTitle)
                     .content(strMessage)
                     .cancelable(isCancelable)
-                    .typeface("Roboto-Bold.ttf", "Roboto-Light.ttf");
+                    .typeface("fonts/Muli-Bold.ttf", "fonts/Muli-Light.ttf");
 
             builder
                     .progress(true, progress)
