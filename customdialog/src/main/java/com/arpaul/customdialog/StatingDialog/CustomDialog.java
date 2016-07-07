@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.arpaul.customdialog.R;
 
+import java.util.HashMap;
+
 /**
  * Created by Aritra on 05-07-2016.
  */
@@ -32,9 +34,7 @@ public class CustomDialog {
     private FloatingActionButton fabDayNewSchedule;
     private CustomDialogType DIALOG_TYPE;
     private DialogListener listener;
-    private Typeface tfNormal, tfBold, tfSeparate;
-    private int typefaceStyle = Typeface.BOLD;
-    private CustomDialogTypeFace typefaceInterface;
+    private Typeface tfNormal, tfBold;
 
     private String messageTitle, messageBody;
     private String posButton, negButton, reason;
@@ -42,6 +42,8 @@ public class CustomDialog {
     protected Builder mBuilder;
     protected Handler mHandler;
     protected LayoutInflater inflater;
+    private HashMap<CustomDialogTypeFace, TypefaceDO> hashTypeface = new HashMap<>();
+    private HashMap<CustomDialogTypeFace, Integer> hashTextColor = new HashMap<>();
 
     /**
      *
@@ -127,7 +129,7 @@ public class CustomDialog {
     }
 
     /**
-     *
+     * Set Typeface normal and bold.
      * @param tfNormal
      * @param tfBold
      */
@@ -136,10 +138,26 @@ public class CustomDialog {
         this.tfBold     = tfBold;
     }
 
+    /**
+     * Sets Typeface for the specfied View.
+     * @param typefaceInterface
+     * @param tfBold
+     * @param style
+     */
     public void setTypefaceFor(CustomDialogTypeFace typefaceInterface, Typeface tfBold, int style){
-        this.typefaceInterface  = typefaceInterface;
-        this.tfSeparate         = tfBold;
-        this.typefaceStyle      = style;
+        TypefaceDO objTypefaceDO = new TypefaceDO();
+        objTypefaceDO.tfFont     = tfBold;
+        objTypefaceDO.style      = style;
+        hashTypeface.put(typefaceInterface,objTypefaceDO);
+    }
+
+    /**
+     * Sets Text Color for the specfied View.
+     * @param textColorInterface
+     * @param textColor
+     */
+    public void setTextColorFor(CustomDialogTypeFace textColorInterface, int textColor){
+        hashTextColor.put(textColorInterface,textColor);
     }
 
     public void show(){
@@ -160,6 +178,9 @@ public class CustomDialog {
                     break;
                 case DIALOG_ALERT:
                     layout = inflater.inflate(R.layout.custom_alert, null);
+                    break;
+                case DIALOG_NORMAL:
+                    layout = inflater.inflate(R.layout.custom_normal, null);
                     break;
             }
 
@@ -222,20 +243,36 @@ public class CustomDialog {
                         tvContentDecline.setVisibility(View.GONE);
                     break;
 
+                case DIALOG_NORMAL:
+                    break;
                 default:
             };
 
-            switch (typefaceInterface){
-                case DIALOG_TITLE:
-                    tvContentTitle.setTypeface(tfSeparate,typefaceStyle);
-                    break;
-                case DIALOG_BODY:
-                    tvContentBody.setTypeface(tfSeparate,typefaceStyle);
-                    break;
-                case DIALOG_BUTTON:
-                    tvContentAccept.setTypeface(tfSeparate,typefaceStyle);
-                    tvContentDecline.setTypeface(tfSeparate,typefaceStyle);
-                    break;
+            if(hashTypeface.containsKey(CustomDialogTypeFace.DIALOG_TITLE)){
+                tvContentTitle.setTypeface(hashTypeface.get(CustomDialogTypeFace.DIALOG_TITLE).tfFont,
+                        hashTypeface.get(CustomDialogTypeFace.DIALOG_TITLE).style);
+            }
+            if(hashTypeface.containsKey(CustomDialogTypeFace.DIALOG_BODY)){
+                tvContentBody.setTypeface(hashTypeface.get(CustomDialogTypeFace.DIALOG_BODY).tfFont,
+                        hashTypeface.get(CustomDialogTypeFace.DIALOG_BODY).style);
+            }
+            if(hashTypeface.containsKey(CustomDialogTypeFace.DIALOG_BUTTON)){
+                tvContentAccept.setTypeface(hashTypeface.get(CustomDialogTypeFace.DIALOG_BUTTON).tfFont,
+                        hashTypeface.get(CustomDialogTypeFace.DIALOG_BUTTON).style);
+
+                tvContentDecline.setTypeface(hashTypeface.get(CustomDialogTypeFace.DIALOG_BUTTON).tfFont,
+                        hashTypeface.get(CustomDialogTypeFace.DIALOG_BUTTON).style);
+            }
+
+            if(hashTextColor.containsKey(CustomDialogTypeFace.DIALOG_TITLE)){
+                tvContentTitle.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_TITLE));
+            }
+            if(hashTextColor.containsKey(CustomDialogTypeFace.DIALOG_BODY)){
+                tvContentBody.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_BODY));
+            }
+            if(hashTextColor.containsKey(CustomDialogTypeFace.DIALOG_BUTTON)){
+                tvContentAccept.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_BUTTON));
+                tvContentDecline.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_BUTTON));
             }
 
         } catch (Exception e) {

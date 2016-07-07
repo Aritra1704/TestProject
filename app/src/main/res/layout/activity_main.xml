@@ -1,37 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bpBlue"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/btnDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Check" />
+        android:text="Check"/>
 
     <Button
         android:id="@+id/btnProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ProgressBar" />
+        android:text="ProgressBar"/>
 
     <Button
         android:id="@+id/btnCustomDialogAccept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Accept" />
+        android:text="Accept"/>
 
     <Button
         android:id="@+id/btnCustomDialogDecline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Failure" />
+        android:text="Failure"/>
 
     <Button
         android:id="@+id/btnCustomDialogAlert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Alert" />
+        android:text="Alert"/>
 
+    <Button
+        android:id="@+id/btnCustomDialogNormal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Normal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Choose"/>
+
+        <com.arpaul.customdialog.textSpinner.CustomSpinner
+            android:id="@+id/csTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_50"/>
+    </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlackTranslucent"
+    android:foregroundGravity="center"
+    android:orientation="vertical">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_200"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_50">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_75"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorOffWhite"
+                android:fitsSystemWindows="true"
+                android:foregroundGravity="center"
+                app:contentScrim="?attr/colorPrimary">
+
+                <TextView
+                    android:id="@+id/tvContentTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/content_title"
+                    android:textSize="@dimen/textsize_30"/>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <include layout="@layout/content_normal"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabDayNewSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@color/colorOffWhite"
+            android:elevation="@dimen/margin_10"
+            android:src="@drawable/svg_tick"
+            android:tint="@color/colorBluishGreen"
+            android:visibility="gone"
+            app:backgroundTint="@color/colorOffWhite"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|center_horizontal"/>
+    </android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

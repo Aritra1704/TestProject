@@ -16,14 +16,20 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.arpaul.customdialog.statingDialog.CustomDialog;
 import com.arpaul.customdialog.statingDialog.CustomDialogType;
+import com.arpaul.customdialog.statingDialog.CustomDialogTypeFace;
 import com.arpaul.customdialog.statingDialog.DialogListener;
+import com.arpaul.customdialog.textSpinner.CustomSpinner;
+import com.arpaul.customdialog.textSpinner.SpinnerCellListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements DialogListener {
 
-    private Button btnDialog,btnProgressBar, btnCustomDialogAccept, btnCustomDialogDecline, btnCustomDialogAlert;
+    private Button btnDialog,btnProgressBar, btnCustomDialogAccept, btnCustomDialogDecline, btnCustomDialogAlert, btnCustomDialogNormal;
     private Context mContext;
     public MaterialDialog materialDialog,materialPB;
     private CustomDialog cDialog;
+    private CustomSpinner csTest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +79,8 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
                 cDialog = new CustomDialog(MainActivity.this, MainActivity.this,"Failure","Message failure",
                         getString(R.string.ok), null, "Failure", CustomDialogType.DIALOG_FAILURE);
                 Typeface tfBold = Typeface.createFromAsset(getAssets(),"fonts/Muli-Bold.ttf");
-//                cDialog.setTypefaceFor(CustomDialogTypeFace.DIALOG_BODY, tfBold, Typeface.BOLD);
+                cDialog.setTypefaceFor(CustomDialogTypeFace.DIALOG_BODY, tfBold, Typeface.BOLD);
+//                cDialog.setTypefaceFor(CustomDialogTypeFace.DIALOG_TITLE, tfBold, Typeface.BOLD);
                 cDialog.show();
             }
         });
@@ -86,6 +93,33 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
                         getString(R.string.ok), null, "Alert", CustomDialogType.DIALOG_ALERT).show();
             }
         });
+
+        btnCustomDialogNormal = (Button) findViewById(R.id.btnCustomDialogNormal);
+        btnCustomDialogNormal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new CustomDialog(MainActivity.this, MainActivity.this,"Normal","Message normal",
+                        getString(R.string.ok), null, "Normal", CustomDialogType.DIALOG_NORMAL).show();
+            }
+        });
+
+        csTest = (CustomSpinner) findViewById(R.id.csTest);
+        csTest.setTitleText("Title");
+        csTest.setHint("Tap here");
+        ArrayList<String> arrSpin = new ArrayList<>();
+        arrSpin.add("Test 1");
+        arrSpin.add("Test 2");
+        arrSpin.add("Test 3");
+        arrSpin.add("Test 4");
+        arrSpin.add("Test 5");
+        csTest.setAdapter(arrSpin);
+        csTest.setItemlistener(new SpinnerCellListener() {
+            @Override
+            public void onItemClick(String selectedCell){
+                csTest.setText(selectedCell);
+            }
+        });
+
     }
 
     @Override
