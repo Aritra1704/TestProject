@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:orientation="vertical"
-    android:padding="@dimen/margin_10">
+    android:padding="@dimen/margin_5">
 
     <TextView
         android:id="@+id/tvSpinnerTitle"
@@ -20,8 +20,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvSpinnerList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_5">
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

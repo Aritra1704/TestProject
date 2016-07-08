@@ -1,6 +1,7 @@
 package com.arpaul.customdialog.textSpinner;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -36,6 +37,7 @@ public class CustomSpinner extends LinearLayout {
     private RecyclerView rvSpinnerList;
     private ImageView ivLowerBorder;
     private int popupBgColor = 0;
+    private final int CLICK_DELAY = 200;
 
     /**
      * Contructor for spinner
@@ -149,7 +151,13 @@ public class CustomSpinner extends LinearLayout {
             public void onItemClick(View v, int position) {
                 if(itemListener != null)
                     itemListener.onItemClick(spinnerList.get(position));
-                pwindo.dismiss();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pwindo.dismiss();
+                    }
+                },CLICK_DELAY);
             }
         }));
     }

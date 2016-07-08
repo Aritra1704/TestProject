@@ -46,6 +46,7 @@ public class CustomDialog {
     private HashMap<CustomDialogTypeFace, TypefaceDO> hashTypeface = new HashMap<>();
     private HashMap<CustomDialogTypeFace, Integer> hashTextColor = new HashMap<>();
     private int colorHeader = 1;
+    private final int CLICK_DELAY = 200;
 
     /**
      *
@@ -299,15 +300,25 @@ public class CustomDialog {
 
     private View.OnClickListener accept_button_click_listener = new View.OnClickListener() {
         public void onClick(View v) {
-            pwindo.dismiss();
-            listener.OnButtonYesClick(reason);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    pwindo.dismiss();
+                    listener.OnButtonYesClick(reason);
+                }
+            },CLICK_DELAY);
         }
     };
 
     private View.OnClickListener cancel_button_click_listener = new View.OnClickListener() {
         public void onClick(View v) {
-            pwindo.dismiss();
-            listener.OnButtonNoClick(reason);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    pwindo.dismiss();
+                    listener.OnButtonNoClick(reason);
+                }
+            },CLICK_DELAY);
         }
     };
 

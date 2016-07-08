@@ -10,14 +10,14 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_250"
+        android:layout_height="@dimen/margin_187"
         android:layout_gravity="center"
         android:layout_margin="@dimen/margin_50">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_75"
+            android:layout_height="@dimen/margin_60"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.design.widget.CollapsingToolbarLayout
@@ -44,11 +44,7 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabDayNewSchedule"
-            android:layout_width="@dimen/margin_50"
-            android:layout_height="@dimen/margin_50"
-            android:layout_margin="@dimen/fab_margin"
-            android:background="@color/colorOffWhite"
-            android:elevation="@dimen/margin_10"
+            style="@style/StyleFAB"
             android:src="@drawable/svg_tick"
             android:tint="@color/colorBluishGreen"
             android:visibility="gone"
