@@ -1,6 +1,7 @@
 package com.arpaul.customdialog.statingDialog;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -44,6 +45,7 @@ public class CustomDialog {
     protected LayoutInflater inflater;
     private HashMap<CustomDialogTypeFace, TypefaceDO> hashTypeface = new HashMap<>();
     private HashMap<CustomDialogTypeFace, Integer> hashTextColor = new HashMap<>();
+    private int colorHeader = 1;
 
     /**
      *
@@ -160,6 +162,14 @@ public class CustomDialog {
         hashTextColor.put(textColorInterface,textColor);
     }
 
+    /**
+     * Sets Header color.
+     * @param color
+     */
+    public void setHeaderColor(int color){
+        this.colorHeader = color;
+    }
+
     public void show(){
         initiatePopupWindow();
     }
@@ -185,7 +195,11 @@ public class CustomDialog {
             }
 
             pwindo = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+            pwindo.setAnimationStyle(R.style.AnimationPopUp);
+//            pwindo.setAnimationStyle(R.style.AnimationSlideVertical);
+
             pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
+
 
             tvContentDecline    = (TextView) layout.findViewById(R.id.tvContentDecline);
             tvContentAccept     = (TextView) layout.findViewById(R.id.tvContentAccept);
@@ -217,6 +231,9 @@ public class CustomDialog {
             } else {
 //                llLowerLayout.setVisibility(View.GONE);
             }
+
+            if(colorHeader != 1)
+                toolbar_layout.setBackgroundColor(colorHeader);
 
             switch (DIALOG_TYPE){
                 case DIALOG_SUCCESS:

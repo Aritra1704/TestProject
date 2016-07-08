@@ -10,13 +10,15 @@
         android:id="@+id/btnDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Check"/>
+        android:text="Check"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btnProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ProgressBar"/>
+        android:text="ProgressBar"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btnCustomDialogAccept"

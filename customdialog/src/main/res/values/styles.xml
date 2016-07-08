@@ -33,8 +33,47 @@
         <item name="android:contentDescription">@string/accessibility_overflow</item>
     </style>
 
-    <style name="MonthTitle">
-        <item name="android:textSize">@dimen/textsize_16</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+    <style name="StyleAccept">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/ripple_layout_t</item>
+        <item name="android:paddingTop">@dimen/margin_8</item>
+        <item name="android:paddingRight">@dimen/margin_20</item>
+        <item name="android:paddingLeft">@dimen/margin_20</item>
+        <item name="android:paddingBottom">@dimen/margin_8</item>
+        <item name="android:textSize">@dimen/textsize_20</item>
+        <item name="android:text">@string/content_accept</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="StyleDecline">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/ripple_layout_t</item>
+        <item name="android:paddingTop">@dimen/margin_8</item>
+        <item name="android:paddingRight">@dimen/margin_15</item>
+        <item name="android:paddingLeft">@dimen/margin_15</item>
+        <item name="android:paddingBottom">@dimen/margin_8</item>
+        <item name="android:textSize">@dimen/textsize_20</item>
+        <item name="android:text">@string/content_decline</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="StyleContentHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="AnimationPopUp" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_popup_s</item>
+        <item name="android:windowExitAnimation">@anim/anim_popup_h</item>
+    </style>
+
+    <style name="AnimationSlideVertical" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_slide_s</item>
+        <item name="android:windowExitAnimation">@anim/anim_slide_h</item>
     </style>
 </resources>

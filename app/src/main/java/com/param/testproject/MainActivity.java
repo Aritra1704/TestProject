@@ -20,6 +20,7 @@ import com.arpaul.customdialog.statingDialog.CustomDialogTypeFace;
 import com.arpaul.customdialog.statingDialog.DialogListener;
 import com.arpaul.customdialog.textSpinner.CustomSpinner;
 import com.arpaul.customdialog.textSpinner.SpinnerCellListener;
+import com.arpaul.utilitieslib.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
             public void onClick(View v) {
                 cDialog = new CustomDialog(MainActivity.this, MainActivity.this, "Success","Message success",
                         null, null, "Success", CustomDialogType.DIALOG_SUCCESS);
+//                cDialog.setHeaderColor(ColorUtils.getColor(MainActivity.this,R.color.colorBrightRed));
                 cDialog.show();
             }
         });
@@ -76,10 +78,10 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
         btnCustomDialogDecline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cDialog = new CustomDialog(MainActivity.this, MainActivity.this,"Failure","Message failure",
+                cDialog = new CustomDialog(MainActivity.this, MainActivity.this,"Failure","Message failure.",
                         getString(R.string.ok), null, "Failure", CustomDialogType.DIALOG_FAILURE);
                 Typeface tfBold = Typeface.createFromAsset(getAssets(),"fonts/Muli-Bold.ttf");
-                cDialog.setTypefaceFor(CustomDialogTypeFace.DIALOG_BODY, tfBold, Typeface.BOLD);
+//                cDialog.setTypefaceFor(CustomDialogTypeFace.DIALOG_BODY, tfBold, Typeface.BOLD);
 //                cDialog.setTypefaceFor(CustomDialogTypeFace.DIALOG_TITLE, tfBold, Typeface.BOLD);
                 cDialog.show();
             }
@@ -98,8 +100,10 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
         btnCustomDialogNormal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new CustomDialog(MainActivity.this, MainActivity.this,"Normal","Message normal",
-                        getString(R.string.ok), null, "Normal", CustomDialogType.DIALOG_NORMAL).show();
+                cDialog = new CustomDialog(MainActivity.this, MainActivity.this,"Normal","Message normal",
+                        getString(R.string.ok), null, "Normal", CustomDialogType.DIALOG_NORMAL);
+                cDialog.setTextColorFor(CustomDialogTypeFace.DIALOG_TITLE, ColorUtils.getColor(MainActivity.this, R.color.bpLight_gray));
+                cDialog.show();
             }
         });
 

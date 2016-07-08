@@ -3,21 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    android:orientation="vertical"
-    android:padding="@dimen/margin_10"
+    style="@style/StyleContentHeader"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/custom_normal">
 
-    <TextView
-        android:id="@+id/tvContentBody"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_25"
-        android:textSize="@dimen/textsize_15"
-        android:text="@string/content_body"/>
+    <include layout="@layout/content_body"/>
 
     <LinearLayout
         android:id="@+id/llLowerLayout"
@@ -25,25 +15,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="right"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_5">
 
         <TextView
             android:id="@+id/tvContentDecline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_15"
-            android:text="@string/content_decline"
-            android:textColor="@color/colorLightGrey"
-            android:textSize="@dimen/textsize_20"/>
+            style="@style/StyleDecline"
+            android:textColor="@color/colorLightGrey"/>
 
         <TextView
             android:id="@+id/tvContentAccept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_15"
-            android:layout_marginBottom="@dimen/margin_5"
-            android:text="@string/content_accept"
-            android:textColor="@color/colorBluishGreen"
-            android:textSize="@dimen/textsize_20"/>
+            style="@style/StyleAccept"
+            android:textColor="@color/colorBluishGreen"/>
     </LinearLayout>
 </FrameLayout>

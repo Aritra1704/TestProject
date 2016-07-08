@@ -32,8 +32,10 @@ public class CustomSpinner extends LinearLayout {
     private SpinnerAdapter adapter;
     private SpinnerCellListener itemListener;
     private TextView tvSpinnerTitle;
+    private LinearLayout llPopup;
     private RecyclerView rvSpinnerList;
     private ImageView ivLowerBorder;
+    private int popupBgColor = 0;
 
     /**
      * Contructor for spinner
@@ -88,8 +90,17 @@ public class CustomSpinner extends LinearLayout {
         createListPopup();
     }
 
+    /**
+     * Set up listener for receiving item click.
+     * @param itemListener
+     */
     public void setItemlistener(SpinnerCellListener itemListener){
         this.itemListener = itemListener;
+    }
+
+    public void setPopupBgColor(int color){
+        this.popupBgColor = popupBgColor;
+        llPopup.setBackgroundColor(popupBgColor);
     }
 
     private void bindControls(){
@@ -122,6 +133,7 @@ public class CustomSpinner extends LinearLayout {
         pwindo = new PopupWindow(layout, view.getMeasuredWidth(), ViewGroup.LayoutParams.WRAP_CONTENT, true);
 //                pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
 
+        llPopup             = (LinearLayout) layout.findViewById(R.id.llPopup);
         tvSpinnerTitle      = (TextView) layout.findViewById(R.id.tvSpinnerTitle);
         rvSpinnerList       = (RecyclerView) layout.findViewById(R.id.rvSpinnerList);
         rvSpinnerList.setLayoutManager(new LinearLayoutManager(context));
