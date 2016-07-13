@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.Overlay" parent="AppThemeBase">
         <item name="colorPrimary">@color/transparent</item>
@@ -41,7 +41,7 @@
         <item name="android:paddingRight">@dimen/margin_15</item>
         <item name="android:paddingLeft">@dimen/margin_10</item>
         <item name="android:paddingBottom">@dimen/margin_8</item>
-        <item name="android:textSize">@dimen/textsize_20</item>
+        <item name="android:textSize">@dimen/textsize_18</item>
         <item name="android:text">@string/content_accept</item>
         <item name="android:clickable">true</item>
     </style>
@@ -54,9 +54,18 @@
         <item name="android:paddingRight">@dimen/margin_10</item>
         <item name="android:paddingLeft">@dimen/margin_10</item>
         <item name="android:paddingBottom">@dimen/margin_8</item>
-        <item name="android:textSize">@dimen/textsize_20</item>
+        <item name="android:textSize">@dimen/textsize_18</item>
         <item name="android:text">@string/content_decline</item>
         <item name="android:clickable">true</item>
+    </style>
+
+    <style name="StyleTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_20</item>
+        <item name="android:text">@string/content_title</item>
     </style>
 
     <style name="StyleFAB">

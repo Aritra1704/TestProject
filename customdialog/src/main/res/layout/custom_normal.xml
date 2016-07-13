@@ -31,11 +31,7 @@
 
                 <TextView
                     android:id="@+id/tvContentTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/content_title"
-                    android:textSize="@dimen/textsize_30"/>
+                    style="@style/StyleTitle"/>
 
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
