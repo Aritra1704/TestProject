@@ -14,6 +14,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.arpaul.customdialog.listDialog.CustomDialogListType;
+import com.arpaul.customdialog.listDialog.CustomListDialog;
+import com.arpaul.customdialog.listDialog.DialogListListener;
 import com.arpaul.customdialog.statingDialog.CustomDialog;
 import com.arpaul.customdialog.statingDialog.CustomDialogType;
 import com.arpaul.customdialog.statingDialog.CustomDialogTypeFace;
@@ -26,10 +29,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements DialogListener {
 
-    private Button btnDialog,btnProgressBar, btnCustomDialogAccept, btnCustomDialogDecline, btnCustomDialogAlert, btnCustomDialogNormal;
+    private Button btnDialog,btnProgressBar, btnCustomDialogAccept, btnCustomDialogDecline, btnCustomDialogAlert,
+            btnCustomDialogNormal, btnCustomDialogWait;
+    private Button btnTwoway, btnMaterial, btnDeterminateTwoway, btnCustomList;
     private Context mContext;
     public MaterialDialog materialDialog,materialPB;
     private CustomDialog cDialog;
+    private CustomListDialog cListDialog;
     private CustomSpinner csTest;
 
     @Override
@@ -102,8 +108,71 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
             public void onClick(View v) {
                 cDialog = new CustomDialog(MainActivity.this, MainActivity.this,"Normal","Message normal",
                         getString(R.string.ok), null, "Normal", CustomDialogType.DIALOG_NORMAL);
-                cDialog.setTextColorFor(CustomDialogTypeFace.DIALOG_TITLE, ColorUtils.getColor(MainActivity.this, R.color.bpLight_gray));
+                cDialog.setTextColorFor(CustomDialogTypeFace.DIALOG_TITLE, ColorUtils.getColor(MainActivity.this, R.color.colorMediumGrey));
                 cDialog.show();
+            }
+        });
+
+        btnCustomDialogWait = (Button) findViewById(R.id.btnCustomDialogWait);
+        btnCustomDialogWait.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cDialog = new CustomDialog(MainActivity.this, MainActivity.this,"Wait","Please wait..",
+                        getString(R.string.ok), null, "Wait", CustomDialogType.DIALOG_WAIT);
+//                cDialog.setTextColorFor(CustomDialogTypeFace.DIALOG_TITLE, ColorUtils.getColor(MainActivity.this, R.color.bpLight_gray));
+                cDialog.show();
+            }
+        });
+
+        btnCustomList = (Button) findViewById(R.id.btnCustomList);
+        btnCustomList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> arrList = new ArrayList<String>();
+                arrList.add("Text1");
+                arrList.add("Text2");
+                arrList.add("Text3");
+                arrList.add("Text4");
+
+                cListDialog = new CustomListDialog(MainActivity.this, new DialogListListener() {
+                    @Override
+                    public void SelectedListClick(String from) {
+
+                    }
+
+                    @Override
+                    public void OnListYesClick(String from) {
+
+                    }
+
+                    @Override
+                    public void OnListNoClick(String from) {
+
+                    }
+                }, "List", arrList, "List", CustomDialogListType.LIST_SINGLESELECT);
+//                cListDialog.setTextColorFor(CustomDialogTypeFace.DIALOG_TITLE, ColorUtils.getColor(MainActivity.this, R.color.bpLight_gray));
+                cListDialog.show();
+            }
+        });
+
+        btnTwoway = (Button) findViewById(R.id.btnTwoway);
+        btnTwoway.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        btnMaterial = (Button) findViewById(R.id.btnMaterial);
+        btnMaterial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        btnDeterminateTwoway = (Button) findViewById(R.id.btnDeterminateTwoway);
+        btnDeterminateTwoway.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
 

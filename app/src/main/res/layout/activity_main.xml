@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bpBlue"
+    android:background="@color/colorLightBlue"
     android:orientation="vertical">
 
     <Button
@@ -43,6 +43,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Normal"/>
+
+    <Button
+        android:id="@+id/btnCustomDialogWait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wait"/>
+
+    <Button
+        android:id="@+id/btnCustomList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="List"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnTwoway"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Two way"/>
+
+        <Button
+            android:id="@+id/btnMaterial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Material"/>
+
+        <Button
+            android:id="@+id/btnDeterminateTwoway"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="D Two way"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

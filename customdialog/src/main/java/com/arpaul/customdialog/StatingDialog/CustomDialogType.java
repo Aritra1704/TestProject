@@ -7,5 +7,6 @@ public enum CustomDialogType {
     DIALOG_SUCCESS,
     DIALOG_FAILURE,
     DIALOG_ALERT,
-    DIALOG_NORMAL
+    DIALOG_NORMAL,
+    DIALOG_WAIT
 }

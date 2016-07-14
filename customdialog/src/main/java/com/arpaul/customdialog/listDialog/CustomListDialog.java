@@ -1,12 +1,12 @@
-package com.arpaul.customdialog.statingDialog;
+package com.arpaul.customdialog.listDialog;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,92 +14,86 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.arpaul.customdialog.R;
+import com.arpaul.customdialog.statingDialog.CustomDialogTypeFace;
+import com.arpaul.customdialog.statingDialog.TypefaceDO;
+import com.arpaul.customdialog.textSpinner.RecyclerViewItemClickListener;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
- * Created by Aritra on 05-07-2016.
+ * Created by Aritra on 13-07-2016.
  */
-public class CustomDialog {
+public class CustomListDialog {
 
     private Context context;
+    protected LayoutInflater inflater;
     private PopupWindow pwindo;
-    private TextView tvContentDecline, tvContentAccept, tvContentBody, tvContentTitle;
     private LinearLayout llLowerLayout;
     private CollapsingToolbarLayout toolbar_layout;
-    private FloatingActionButton fabDayNewSchedule;
-    private CustomDialogType DIALOG_TYPE;
-    private DialogListener listener;
+    private TextView tvContentDecline, tvContentAccept, tvContentTitle;
+    private RecyclerView rvContentBody;
+
+    private DialogListListener listener;
+    private String messageTitle, reason, posButton, negButton;
+    private List<String> listBody;
+    private CustomDialogListType LIST_TYPE;
     private Typeface tfNormal, tfBold;
-
-    private String messageTitle, messageBody;
-    private String posButton, negButton, reason;
-
-    protected Builder mBuilder;
-    protected Handler mHandler;
-    protected LayoutInflater inflater;
     private HashMap<CustomDialogTypeFace, TypefaceDO> hashTypeface = new HashMap<>();
     private HashMap<CustomDialogTypeFace, Integer> hashTextColor = new HashMap<>();
     private int colorHeader = 1;
-    private final int CLICK_DELAY = 200;
+    private DialogListAdapter adapter;
 
-    /**
-     *
-     * @param builder
-     */
-    public CustomDialog(Builder builder){
-        mHandler = new Handler();
-        mBuilder = builder;
-        inflater = LayoutInflater.from(builder.context);
-    }
+    private final int CLICK_DELAY = 250;
 
     /**
      *
      * @param context
      * @param listener
      * @param messageTitle
-     * @param messageBody
+     * @param listBody
      * @param reason
-     * @param DIALOG_TYPE
+     * @param LIST_TYPE
      */
-    public CustomDialog(@NonNull Context context,@NonNull DialogListener listener,@NonNull String messageTitle,@NonNull String messageBody,
-                        @NonNull String reason,@NonNull CustomDialogType DIALOG_TYPE) {
+    public CustomListDialog(@NonNull Context context, @NonNull DialogListListener listener, @NonNull String messageTitle, @NonNull List<String> listBody,
+                        @NonNull String reason, @NonNull CustomDialogListType LIST_TYPE) {
         this.context        = context;
         this.listener       = listener;
         this.messageTitle   = messageTitle;
-        this.messageBody    = messageBody;
+        this.listBody       = listBody;
         this.reason         = reason;
-        this.DIALOG_TYPE    = DIALOG_TYPE;
+        this.LIST_TYPE      = LIST_TYPE;
 
         inflater = LayoutInflater.from(this.context);
     }
 
     /**
-     * Contructor for Custom Dialog to show Success, Failure or Alert popups.
+     *
      * @param context
      * @param listener
      * @param messageTitle
-     * @param messageBody
+     * @param listBody
      * @param posButton
      * @param negButton
      * @param reason
-     * @param DIALOG_TYPE
+     * @param LIST_TYPE
      */
-    public CustomDialog(@NonNull Context context,@NonNull DialogListener listener,@NonNull String messageTitle,@NonNull String messageBody,
-                        String posButton, String negButton,@NonNull String reason,@NonNull CustomDialogType DIALOG_TYPE) {
+    public CustomListDialog(@NonNull Context context, @NonNull DialogListListener listener, @NonNull String messageTitle, @NonNull List<String> listBody,
+                        String posButton, String negButton, @NonNull String reason, @NonNull CustomDialogListType LIST_TYPE) {
         this.context        = context;
         this.listener       = listener;
         this.messageTitle   = messageTitle;
-        this.messageBody    = messageBody;
+        this.listBody       = listBody;
         this.posButton      = posButton;
         this.negButton      = negButton;
         this.reason         = reason;
-        this.DIALOG_TYPE    = DIALOG_TYPE;
+        this.LIST_TYPE      = LIST_TYPE;
 
         inflater = LayoutInflater.from(this.context);
     }
@@ -109,23 +103,23 @@ public class CustomDialog {
      * @param context
      * @param listener
      * @param messageTitle
-     * @param messageBody
+     * @param listBody
      * @param posButton
      * @param negButton
      * @param reason
-     * @param DIALOG_TYPE
+     * @param LIST_TYPE
      * @param typeface
      */
-    public CustomDialog(@NonNull Context context,@NonNull DialogListener listener,@NonNull String messageTitle,@NonNull String messageBody,
-                        String posButton, String negButton,@NonNull String reason,@NonNull CustomDialogType DIALOG_TYPE,Typeface typeface) {
+    public CustomListDialog(@NonNull Context context,@NonNull DialogListListener listener,@NonNull String messageTitle,@NonNull List<String> listBody,
+                        String posButton, String negButton,@NonNull String reason,@NonNull CustomDialogListType LIST_TYPE, Typeface typeface) {
         this.context        = context;
         this.listener       = listener;
-        this.messageBody    = messageBody;
+        this.listBody       = listBody;
         this.messageTitle   = messageTitle;
         this.posButton      = posButton;
         this.negButton      = negButton;
         this.reason         = reason;
-        this.DIALOG_TYPE    = DIALOG_TYPE;
+        this.LIST_TYPE      = LIST_TYPE;
         this.tfNormal       = typeface;
 
         inflater = LayoutInflater.from(this.context);
@@ -171,30 +165,24 @@ public class CustomDialog {
         this.colorHeader = color;
     }
 
+    /**
+     * Shows the List Dialog
+     */
     public void show(){
         initiatePopupWindow();
     }
 
-    private void initiatePopupWindow() {
+    private void initiatePopupWindow(){
 
         try {
             View layout = null;
 
-            switch (DIALOG_TYPE){
-                case DIALOG_SUCCESS:
-                    layout = inflater.inflate(R.layout.custom_success, null);
+            switch (LIST_TYPE){
+                case LIST_SINGLESELECT:
+                    layout = inflater.inflate(R.layout.custom_single_list, null);
                     break;
-                case DIALOG_FAILURE:
-                    layout = inflater.inflate(R.layout.custom_failure, null);
-                    break;
-                case DIALOG_ALERT:
-                    layout = inflater.inflate(R.layout.custom_alert, null);
-                    break;
-                case DIALOG_NORMAL:
-                    layout = inflater.inflate(R.layout.custom_normal, null);
-                    break;
-                case DIALOG_WAIT:
-                    layout = inflater.inflate(R.layout.custom_wait, null);
+                case LIST_MULTISELECT:
+                    layout = inflater.inflate(R.layout.custom_single_list, null);
                     break;
             }
 
@@ -202,19 +190,16 @@ public class CustomDialog {
             pwindo.setAnimationStyle(R.style.AnimationPopUp);
 //            pwindo.setAnimationStyle(R.style.AnimationSlideVertical);
 
-            pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-
-
             tvContentDecline    = (TextView) layout.findViewById(R.id.tvContentDecline);
             tvContentAccept     = (TextView) layout.findViewById(R.id.tvContentAccept);
-            tvContentBody       = (TextView) layout.findViewById(R.id.tvContentBody);
             tvContentTitle      = (TextView) layout.findViewById(R.id.tvContentTitle);
+
+            rvContentBody       = (RecyclerView) layout.findViewById(R.id.rvContentBody);
+            rvContentBody.setLayoutManager(new LinearLayoutManager(context));
 
             llLowerLayout       = (LinearLayout) layout.findViewById(R.id.llLowerLayout);
 
             toolbar_layout      = (CollapsingToolbarLayout) layout.findViewById(R.id.toolbar_layout);
-
-            fabDayNewSchedule   = (FloatingActionButton) layout.findViewById(R.id.fabDayNewSchedule);
 
             if(tfNormal == null)
                 createTypeFace();
@@ -223,7 +208,33 @@ public class CustomDialog {
             tvContentDecline.setOnClickListener(cancel_button_click_listener);
             tvContentAccept.setOnClickListener(accept_button_click_listener);
 
-            tvContentBody.setText(messageBody);
+            adapter = new DialogListAdapter(context,listBody);
+            rvContentBody.setAdapter(adapter);
+
+            rvContentBody.addOnItemTouchListener(new RecyclerViewItemClickListener(context, new RecyclerViewItemClickListener.OnItemClickListener() {
+                @Override
+                public void onItemClick(View v, final int position) {
+                    if(listener != null)
+                        listener.SelectedListClick(listBody.get(position));
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.setSelected(listBody.get(position));
+                        }
+                    },200);
+
+                    if(TextUtils.isEmpty(posButton) && TextUtils.isEmpty(negButton)){
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                pwindo.dismiss();
+                            }
+                        },CLICK_DELAY);
+                    }
+                }
+            }));
+
             tvContentTitle.setText(messageTitle);
 
             if(!TextUtils.isEmpty(posButton))
@@ -238,42 +249,19 @@ public class CustomDialog {
 
             if(TextUtils.isEmpty(posButton) && TextUtils.isEmpty(negButton)){
                 llLowerLayout.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvContentAccept.performClick();
-                    }
-                }, 2500);
             }
 
             if(colorHeader != 1)
                 toolbar_layout.setBackgroundColor(colorHeader);
-
-            switch (DIALOG_TYPE){
-                case DIALOG_SUCCESS:
-                    break;
-
-                case DIALOG_FAILURE:
-                    break;
-
-                case DIALOG_ALERT:
-                    break;
-
-                case DIALOG_NORMAL:
-                    break;
-
-                case DIALOG_WAIT:
-                    break;
-                default:
-            };
 
             if(hashTypeface.containsKey(CustomDialogTypeFace.DIALOG_TITLE)){
                 tvContentTitle.setTypeface(hashTypeface.get(CustomDialogTypeFace.DIALOG_TITLE).tfFont,
                         hashTypeface.get(CustomDialogTypeFace.DIALOG_TITLE).style);
             }
             if(hashTypeface.containsKey(CustomDialogTypeFace.DIALOG_BODY)){
-                tvContentBody.setTypeface(hashTypeface.get(CustomDialogTypeFace.DIALOG_BODY).tfFont,
+                adapter.setTypefaceFor(hashTypeface.get(CustomDialogTypeFace.DIALOG_BODY).tfFont,
                         hashTypeface.get(CustomDialogTypeFace.DIALOG_BODY).style);
+//                adapter.notifyDataSetChanged();
             }
             if(hashTypeface.containsKey(CustomDialogTypeFace.DIALOG_BUTTON)){
                 tvContentAccept.setTypeface(hashTypeface.get(CustomDialogTypeFace.DIALOG_BUTTON).tfFont,
@@ -287,13 +275,14 @@ public class CustomDialog {
                 tvContentTitle.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_TITLE));
             }
             if(hashTextColor.containsKey(CustomDialogTypeFace.DIALOG_BODY)){
-                tvContentBody.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_BODY));
+                adapter.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_BODY));
             }
             if(hashTextColor.containsKey(CustomDialogTypeFace.DIALOG_BUTTON)){
                 tvContentAccept.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_BUTTON));
                 tvContentDecline.setTextColor(hashTextColor.get(CustomDialogTypeFace.DIALOG_BUTTON));
             }
 
+            pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -305,7 +294,7 @@ public class CustomDialog {
                 @Override
                 public void run() {
                     pwindo.dismiss();
-                    listener.OnButtonYesClick(reason);
+                    listener.OnListYesClick(reason);
                 }
             },CLICK_DELAY);
         }
@@ -317,7 +306,7 @@ public class CustomDialog {
                 @Override
                 public void run() {
                     pwindo.dismiss();
-                    listener.OnButtonNoClick(reason);
+                    listener.OnListNoClick(reason);
                 }
             },CLICK_DELAY);
         }
@@ -354,19 +343,6 @@ public class CustomDialog {
                         ((Button)(view)).setTypeface(f, style);
                 }
             }
-        }
-    }
-
-    public static class Builder {
-        protected final Context context;
-
-
-        public final Context getContext() {
-            return context;
-        }
-
-        public Builder(@NonNull Context context) {
-            this.context = context;
         }
     }
 }
