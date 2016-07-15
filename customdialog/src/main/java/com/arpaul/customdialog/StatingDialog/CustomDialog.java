@@ -171,6 +171,25 @@ public class CustomDialog {
         this.colorHeader = color;
     }
 
+    /**
+     * Return whether popup window is showing or not.
+     * @return
+     */
+    public boolean isShowing(){
+        if(pwindo != null && pwindo.isShowing())
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Dismisses popup window.
+     */
+    public void dismiss(){
+        if(pwindo != null && pwindo.isShowing())
+            pwindo.dismiss();
+    }
+
     public void show(){
         initiatePopupWindow();
     }

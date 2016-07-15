@@ -65,21 +65,21 @@
             android:id="@+id/btnTwoway"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="@dimen/weight"
             android:text="Two way"/>
 
         <Button
             android:id="@+id/btnMaterial"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="@dimen/weight"
             android:text="Material"/>
 
         <Button
             android:id="@+id/btnDeterminateTwoway"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="@dimen/weight"
             android:text="D Two way"/>
     </LinearLayout>
 

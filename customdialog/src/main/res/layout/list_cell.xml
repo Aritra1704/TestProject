@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/ivList"
-        android:layout_width="@dimen/margin_10"
-        android:layout_height="@dimen/margin_10"
+        android:layout_width="@dimen/margin_12"
+        android:layout_height="@dimen/margin_12"
         android:layout_marginRight="@dimen/margin_10"
         android:src="@drawable/holo_circle"/>
 </LinearLayout>

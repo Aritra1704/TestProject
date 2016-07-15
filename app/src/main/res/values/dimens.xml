@@ -6,4 +6,6 @@
     <dimen name="margin_100">100dp</dimen>
     <dimen name="margin_200">200dp</dimen>
     <dimen name="margin_300">300dp</dimen>
+
+    <item name="weight" format="float" type="dimen">.5</item>
 </resources>

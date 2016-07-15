@@ -100,16 +100,6 @@ public class DialogListAdapter extends RecyclerView.Adapter<DialogListAdapter.Vi
         } else {
             holder.ivList.setImageDrawable(holo_circle);
         }
-
-//        holder.mView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                selectedCell = strListCell;
-//                holder.ivList.setImageDrawable(context.getResources().getDrawable(R.drawable.solid_circle));
-////                holder.ivList.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.solid_circle, null));
-////                notifyDataSetChanged();
-//            }
-//        });
     }
 
     public void setSelected(String selected){
