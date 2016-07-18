@@ -213,9 +213,9 @@ public class CustomListDialog {
 
             rvContentBody.addOnItemTouchListener(new RecyclerViewItemClickListener(context, new RecyclerViewItemClickListener.OnItemClickListener() {
                 @Override
-                public void onItemClick(View v, final int position) {
+                public void onItemClick(View view, final int position) {
                     if(listener != null)
-                        listener.SelectedListClick(listBody.get(position));
+                        listener.SelectedListClick(view, position, listBody.get(position));
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
