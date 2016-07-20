@@ -9,10 +9,7 @@
     android:orientation="vertical">
 
     <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_187"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/margin_50">
+        style="@style/StyleCoordinatorLayout">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"

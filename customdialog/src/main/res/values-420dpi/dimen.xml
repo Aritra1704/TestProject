@@ -3,9 +3,11 @@
     <dimen name="app_bar_height">240dp</dimen>
     <dimen name="fab_margin">20dp</dimen>
 
-    <dimen name="margin_2_">.2dp</dimen>
+
     <item name="margin_login_" type="dimen" format="float">.65</item>
 
+
+    <dimen name="margin_2_">.2dp</dimen>
     <dimen name="margin_3_">.3dp</dimen>
     <dimen name="margin_5_">.5dp</dimen>
     <dimen name="margin_1">1dp</dimen>

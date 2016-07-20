@@ -98,4 +98,12 @@
         <item name="android:windowExitAnimation">@anim/anim_slide_h</item>
     </style>
 
+    <style name="StyleCoordinatorLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_187</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/margin_25</item>
+        <item name="android:layout_marginRight">@dimen/margin_25</item>
+    </style>
+
 </resources>
