@@ -31,7 +31,7 @@
     <string name="month_c">MONTH</string>
     <string name="day_c">DAY</string>
     <string name="year_c">YEAR</string>
-
+    <string name="Repeat_title">Repeat Weekly</string>
     <!-- 1.3.1 -->
     <string name="min_error">Please input a number greater than or equal to %1$s</string>
     <string name="max_error">Please input a number less than or equal to %1$s</string>

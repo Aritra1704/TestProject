@@ -1,4 +1,4 @@
-package com.arpaul.customdialog.statingDialog;
+package com.arpaul.customdialog.common;
 
 import android.graphics.Typeface;
 

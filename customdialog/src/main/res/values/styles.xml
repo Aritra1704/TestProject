@@ -106,4 +106,23 @@
         <item name="android:layout_marginRight">@dimen/margin_25</item>
     </style>
 
+    <style name="Repeattitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_20</item>
+        <item name="android:text">@string/Repeat_title</item>
+    </style>
+
+    <style name="StyleRepeatText">
+        <item name="android:layout_width">@dimen/margin_65</item>
+        <item name="android:layout_height">@dimen/margin_65</item>
+        <item name="android:background">@drawable/holo_circle</item>
+        <item name="android:layout_margin">@dimen/margin_5</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize_14</item>
+        <item name="android:clickable">true</item>
+    </style>
+
 </resources>

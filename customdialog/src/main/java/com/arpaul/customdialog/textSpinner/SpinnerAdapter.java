@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.arpaul.customdialog.R;
-import com.arpaul.customdialog.statingDialog.CustomDialogTypeFace;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

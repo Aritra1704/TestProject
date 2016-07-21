@@ -1,7 +1,6 @@
 package com.arpaul.customdialog.statingDialog;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -19,6 +18,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.arpaul.customdialog.R;
+import com.arpaul.customdialog.common.CustomDialogTypeFace;
+import com.arpaul.customdialog.common.TypefaceDO;
 
 import java.util.HashMap;
 

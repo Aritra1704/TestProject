@@ -14,14 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.arpaul.customdialog.R;
-import com.arpaul.customdialog.statingDialog.CustomDialogTypeFace;
-import com.arpaul.customdialog.statingDialog.TypefaceDO;
+import com.arpaul.customdialog.common.CustomDialogTypeFace;
+import com.arpaul.customdialog.common.TypefaceDO;
 import com.arpaul.customdialog.textSpinner.RecyclerViewItemClickListener;
 
 import java.util.HashMap;

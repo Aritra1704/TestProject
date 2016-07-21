@@ -17,9 +17,11 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.arpaul.customdialog.listDialog.CustomDialogListType;
 import com.arpaul.customdialog.listDialog.CustomListDialog;
 import com.arpaul.customdialog.listDialog.DialogListListener;
+import com.arpaul.customdialog.repeatDialog.CustomRepeatDialog;
+import com.arpaul.customdialog.repeatDialog.DialogRepeatListener;
 import com.arpaul.customdialog.statingDialog.CustomDialog;
 import com.arpaul.customdialog.statingDialog.CustomDialogType;
-import com.arpaul.customdialog.statingDialog.CustomDialogTypeFace;
+import com.arpaul.customdialog.common.CustomDialogTypeFace;
 import com.arpaul.customdialog.statingDialog.DialogListener;
 import com.arpaul.customdialog.textSpinner.CustomSpinner;
 import com.arpaul.customdialog.textSpinner.SpinnerCellListener;
@@ -27,7 +29,7 @@ import com.arpaul.utilitieslib.ColorUtils;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements DialogListener {
+public class MainActivity extends AppCompatActivity implements DialogListener, DialogRepeatListener {
 
     private Button btnDialog,btnProgressBar, btnCustomDialogAccept, btnCustomDialogDecline, btnCustomDialogAlert,
             btnCustomDialogNormal, btnCustomDialogWait;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
     private Context mContext;
     public MaterialDialog materialDialog,materialPB;
     private CustomDialog cDialog;
+    private CustomRepeatDialog cRepeatDialog;
     private CustomListDialog cListDialog;
     private CustomSpinner csTest;
 
@@ -136,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
 
                 cListDialog = new CustomListDialog(MainActivity.this, new DialogListListener() {
                     @Override
-                    public void SelectedListClick(String from) {
+                    public void SelectedListClick(View view, int which, String from) {
 
                     }
 
@@ -159,6 +162,9 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
         btnTwoway.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cRepeatDialog = new CustomRepeatDialog(MainActivity.this, MainActivity.this,"Repeat",
+                        getString(R.string.ok), null, "Repeat");
+                cRepeatDialog.show();
             }
         });
 
@@ -358,5 +364,15 @@ public class MainActivity extends AppCompatActivity implements DialogListener {
 
     public void onButtonNoClick(String from) {
         Toast.makeText(MainActivity.this,from+" No",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void RepeatDialogYesClick(String from, String repeat) {
+        Toast.makeText(MainActivity.this, repeat, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void RepeatDialogNoClick(String from) {
+
     }
 }
