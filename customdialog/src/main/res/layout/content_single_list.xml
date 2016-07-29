@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/StyleContentHeader"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/custom_wait">
-
+    tools:showIn="@layout/custom_single_list">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvContentBody"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_10"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_weight="1"
         android:text="@string/content_body"
         android:textSize="@dimen/textsize_15"/>
 
@@ -23,7 +25,7 @@
         android:layout_gravity="bottom"
         android:gravity="right"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_5">
+        android:padding="@dimen/margin_2">
 
         <TextView
             android:id="@+id/tvContentDecline"
@@ -35,4 +37,4 @@
             style="@style/StyleAccept"
             android:textColor="@color/colorBluishGreen"/>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

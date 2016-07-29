@@ -36,13 +36,22 @@
 
         <include layout="@layout/content_alert"/>
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageView
+            android:id="@+id/ivSign"
+            style="@style/StyleFAB"
+            android:background="@drawable/solid_circle_w"
+            android:src="@drawable/svg_alert"
+            android:tint="@color/colorBrightRed"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|center_horizontal"/>
+
+        <!--<android.support.design.widget.FloatingActionButton
             android:id="@+id/fabDayNewSchedule"
             style="@style/StyleFAB"
             android:src="@drawable/svg_alert"
             android:tint="@color/colorBrightRed"
             app:backgroundTint="@color/colorOffWhite"
             app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|center_horizontal"/>
+            app:layout_anchorGravity="bottom|center_horizontal"/>-->
     </android.support.design.widget.CoordinatorLayout>
 </FrameLayout>
